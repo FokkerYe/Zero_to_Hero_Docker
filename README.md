@@ -264,6 +264,10 @@ ff8         0.00%      364KiB / 1.93GiB
 CONTAINER   CPU %      MEM USAGE / LIMIT
 ff8         0.00%      364KiB / 1.93GiB
 CONTAINER
+```
+docker container stop ff8
+docker container rm ff8
+```
 
 
 output
@@ -292,7 +296,15 @@ af5b53d4c6d8   alpine    "/etc/os-release"       3 hours ago   Created          
 8ff105a742e1   alpine    "/bin/sh"               3 hours ago   Exited (137) 3 hours ago             recursing_hermann
 edda8974739d   alpine    "/bin/sh"               3 hours ago   Exited (0) 3 hours ago               inspiring_euler
 root@ubuntu-22-04:~#
-   
+
+output
+
+ubuntu       latest    99284ca6cea0   3 weeks ago   77.8MB
+root@ubuntu-22-04:~# docker run -it --name=web -p 80:80 ubuntu:20.04
+
+
+
+
 
 
 
