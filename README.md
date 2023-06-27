@@ -146,6 +146,116 @@ PID   USER     TIME  COMMAND
     1 root      0:00 /bin/sh
    18 root      0:00 sh
    24 root      0:00 ps
+```
+docker stop 8ff
+```
+output
+root@ubuntu-22-04:~# docker ps
+CONTAINER ID   IMAGE     COMMAND     CREATED         STATUS         PORTS     NAMES
+8ff105a742e1   alpine    "/bin/sh"   9 minutes ago   Up 9 minutes             recursing_hermann
+root@ubuntu-22-04:~# docker stop 8ff
+8ff
+root@ubuntu-22-04:~# docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+root@ubuntu-22-04:~#
+output
+root@ubuntu-22-04:~# docker ps -a
+CONTAINER ID   IMAGE     COMMAND     CREATED          STATUS                       PORTS     NAMES
+8ff105a742e1   alpine    "/bin/sh"   14 minutes ago   Exited (137) 4 minutes ago             recursing_hermann
+edda8974739d   alpine    "/bin/sh"   18 minutes ago   Exited (0) 17 minutes ago              inspiring_euler
+```
+docker run --name alpine -it alpine
+```
+output
+root@ubuntu-22-04:~#
+root@ubuntu-22-04:~# docker run --name alpine -it alpine
+/ # cd /tmp/
+/tmp # ls
+/tmp # echo "hello docker" >ayk.txt
+/tmp # cat ayk.txt
+hello docker
+/tmp # exit
+
+output
+root@ubuntu-22-04:~# docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+root@ubuntu-22-04:~# docker exec -d -it 16bca159c4a2 sh
+Error response from daemon: Container 16bca159c4a2245b395e5df392375a6a4c9fa7609d18a170eebd6ce5eae1edbb is not running
+root@ubuntu-22-04:~# docker ps -a
+CONTAINER ID   IMAGE     COMMAND     CREATED          STATUS                        PORTS     NAMES
+16bca159c4a2   alpine    "/bin/sh"   5 minutes ago    Exited (0) 4 minutes ago                alpine
+8ff105a742e1   alpine    "/bin/sh"   21 minutes ago   Exited (137) 10 minutes ago             recursing_hermann
+edda8974739d   alpine    "/bin/sh"   24 minutes ago   Exited (0) 23 minutes ago               inspiring_euler
+root@ubuntu-22-04:~# docker start 16b
+16b
+root@ubuntu-22-04:~# docker exec -it 16b sh
+/ # cd /tmp
+/tmp # ls
+ayk.txt
+/tmp # cat ayk.txt
+hello docker
+/tmp #
+```
+ docker rm alpine
+```
+output
+root@ubuntu-22-04:~# docker ps
+CONTAINER ID   IMAGE     COMMAND     CREATED         STATUS         PORTS     NA                                                                                                             MES
+16bca159c4a2   alpine    "/bin/sh"   7 minutes ago   Up 2 minutes             al                                                                                                             pine
+root@ubuntu-22-04:~# docker stop 16b
+16b
+root@ubuntu-22-04:~# docker ps -a
+CONTAINER ID   IMAGE     COMMAND     CREATED          STATUS                                                                                                                                     PORTS     NAMES
+16bca159c4a2   alpine    "/bin/sh"   8 minutes ago    Exited (137) 8 seconds ago                                                                                                                           alpine
+8ff105a742e1   alpine    "/bin/sh"   24 minutes ago   Exited (137) 13 minutes ag                                                                                                             o             recursing_hermann
+edda8974739d   alpine    "/bin/sh"   27 minutes ago   Exited (0) 26 minutes ago                                                                                                                            inspiring_euler
+root@ubuntu-22-04:~# docker rm alpine
+alpine
+root@ubuntu-22-04:~# docker ps -a
+CONTAINER ID   IMAGE     COMMAND     CREATED          STATUS                                                                                                                                     PORTS     NAMES
+8ff105a742e1   alpine    "/bin/sh"   24 minutes ago   Exited (137) 14 minutes ag                                                                                                             o             recursing_hermann
+edda8974739d   alpine    "/bin/sh"   28 minutes ago   Exited (0) 27 minutes ago                                                                                                                            inspiring_euler
+root@ubuntu-22-04:~#
+```
+docker run alpine /etc/os-release
+```
+output
+root@ubuntu-22-04:~# docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+root@ubuntu-22-04:~# docker run alpine whoami
+root
+root@ubuntu-22-04:~# docker run alpine /etc/os-release
+docker: Error response from daemon: failed to create shim task: OCI runtime crea                                                                                                             te failed: runc create failed: unable to start container process: exec: "/etc/os                                                                                                             -release": permission denied: unknown.
+root@ubuntu-22-04:~# docker run alpine cat /etc/os-release
+NAME="Alpine Linux"
+ID=alpine
+VERSION_ID=3.18.2
+PRETTY_NAME="Alpine Linux v3.18"
+HOME_URL="https://alpinelinux.org/"
+BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
+root@ubuntu-22-04:~#
+```
+docker run -dit alpine
+docker stats ff8
+```
+output
+root@ubuntu-22-04:~# docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+root@ubuntu-22-04:~# docker run -dit alpine
+ff866718263233d52320a761cc03349c5a57f6704fb19adfd5729236b0ffb953
+root@ubuntu-22-04:~# docker ps
+CONTAINER ID   IMAGE     COMMAND     CREATED         STATUS         PORTS     NA                                                                                                             MES
+ff8667182632   alpine    "/bin/sh"   6 seconds ago   Up 5 seconds             be                                                                                                             autiful_pike
+root@ubuntu-22-04:~# docker stats ff8
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O                                                                                                                    BLOCK I/O   PIDS
+ff8667182632   beautiful_pike   0.00%     364KiB / 1.93GiB    0.02%     1.02kB /                                                                                                              0B   0B / 0B     1
+CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O                                                                                                                    BLOCK I/O   PIDS
+ff8667182632   beau
+
+
+
+
+
 
 
 
