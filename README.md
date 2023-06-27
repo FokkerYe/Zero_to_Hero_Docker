@@ -251,6 +251,49 @@ CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O 
 ff8667182632   beautiful_pike   0.00%     364KiB / 1.93GiB    0.02%     1.02kB /                                                                                                              0B   0B / 0B     1
 CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O                                                                                                                    BLOCK I/O   PIDS
 ff8667182632   beau
+```
+docker stats --all --format "table {{.Container}}\t{{.CPUPerc}}\t {{.MemUsage}}" ff8
+```
+
+output
+root@ubuntu-22-04:~# docker stats --all --format "table {{.Container}}\t{{.CPUPerc}}\t {{.MemUsage}}" ff8
+CONTAINER   CPU %      MEM USAGE / LIMIT
+ff8         0.00%      364KiB / 1.93GiB
+CONTAINER   CPU %      MEM USAGE / LIMIT
+ff8         0.00%      364KiB / 1.93GiB
+CONTAINER   CPU %      MEM USAGE / LIMIT
+ff8         0.00%      364KiB / 1.93GiB
+CONTAINER
+
+
+output
+root@ubuntu-22-04:~# docker ps
+CONTAINER ID   IMAGE     COMMAND     CREATED       STATUS       PORTS     NAMES
+ff8667182632   alpine    "/bin/sh"   3 hours ago   Up 3 hours             beauti                                                                                                             ful_pike
+root@ubuntu-22-04:~# docker container stop ff8
+ff8
+root@ubuntu-22-04:~# docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+root@ubuntu-22-04:~# docker ps -a
+CONTAINER ID   IMAGE     COMMAND                 CREATED       STATUS                        PORTS     NAMES
+ff8667182632   alpine    "/bin/sh"               3 hours ago   Exited (137) 35 seconds ago             beautiful_pike
+459467688e4e   alpine    "cat /etc/os-release"   3 hours ago   Exited (0) 3 hours ago                  cool_yonath
+af5b53d4c6d8   alpine    "/etc/os-release"       3 hours ago   Created                                 recursing_noether
+7094af0bb524   alpine    "whoami"                3 hours ago   Exited (0) 3 hours ago                  mystifying_noether
+8ff105a742e1   alpine    "/bin/sh"               3 hours ago   Exited (137) 3 hours ago                recursing_hermann
+edda8974739d   alpine    "/bin/sh"               3 hours ago   Exited (0) 3 hours ago                  inspiring_euler
+root@ubuntu-22-04:~# docker container rm ff8
+ff8
+root@ubuntu-22-04:~# docker ps -a
+CONTAINER ID   IMAGE     COMMAND                 CREATED       STATUS                     PORTS     NAMES
+459467688e4e   alpine    "cat /etc/os-release"   3 hours ago   Exited (0) 3 hours ago               cool_yonath
+af5b53d4c6d8   alpine    "/etc/os-release"       3 hours ago   Created                              recursing_noether
+7094af0bb524   alpine    "whoami"                3 hours ago   Exited (0) 3 hours ago               mystifying_noether
+8ff105a742e1   alpine    "/bin/sh"               3 hours ago   Exited (137) 3 hours ago             recursing_hermann
+edda8974739d   alpine    "/bin/sh"               3 hours ago   Exited (0) 3 hours ago               inspiring_euler
+root@ubuntu-22-04:~#
+   
+
 
 
 
