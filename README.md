@@ -301,6 +301,40 @@ output
 
 ubuntu       latest    99284ca6cea0   3 weeks ago   77.8MB
 root@ubuntu-22-04:~# docker run -it --name=web -p 80:80 ubuntu:20.04
+`
+``
+root@ubuntu-22-04:~# cat Dockerfile
+FROM ubuntu:20.04
+MAINTAINER AYK
+RUN apt-get update && apt-get install -y tzdata && apt-get install -y apache2
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOG_DIR /var/log/apache2
+EXPOSE 80
+CMD ["apache2ctl", "-D", "FOREGROUND"]
+root@ubuntu-22-04:~#
+
+ docker build -t apache2 .
+docker run -d --name aykweb1 -p 80:60 apache2
+```
+output
+https://github.com/konova-mm/static_page
+root@ubuntu-22-04:~/static_page# cat Dockerfile
+FROM ubuntu:18.04
+LABEL maintainer="konova@novaitg.com"
+ENV REFRESHED_AT 2021-12-12
+RUN apt-get -yqq update; apt-get -yqq install nginx
+
+ADD index.html /var/www/html/index.html
+ADD style.css /var/www/html/style.css
+
+ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]
+EXPOSE 80
+root@ubuntu-22-04:~/static_page#
+
+ docker build -t static_page .
+ docker run -d -p 80:800 --name static_web static_page
+```
 
 
 
