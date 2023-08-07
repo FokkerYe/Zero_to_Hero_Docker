@@ -1,18 +1,21 @@
 # Zero_to_Hero_Docker
 
-```
+```bash
 docker -v 
 docker images 
 ```
-Output
+### Output
+```bash
 $ docker images
 REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 [node1] (local) root@192.168.0.8 ~
-
 ```
+
+```bash
  docker pull alpine
-````
-Output
+```
+### Output
+```bash
 $ docker pull alpine
 Using default tag: latest
 latest: Pulling from library/alpine
@@ -22,9 +25,11 @@ Status: Downloaded newer image for alpine:latest
 docker.io/library/alpine:latest
 [node1] (local) root@192.168.0.8 
 ```
+```bash
  docker pull ubuntu:latest
 ```
-output
+### output
+```bash
 root@ubuntu-22-04:~# docker pull ubuntu:latest
 latest: Pulling from library/ubuntu
 6b851dcae6ca: Pull complete
@@ -37,6 +42,7 @@ alpine       latest    c1aabb73d233   12 days ago   7.33MB
 ubuntu       latest    99284ca6cea0   3 weeks ago   77.8MB
 root@ubuntu-22-04:~#
 ```
+```bash
 docker pull image_name:tag
 docker images
 docker rmi image_name (or)
@@ -45,7 +51,8 @@ docker rm remove image_name (or)image_ID
 docker images -q
 docker rmi $(docker images -q)-f
 ```
-output
+### output
+```bash
 root@ubuntu-22-04:~# docker images
 REPOSITORY       TAG       IMAGE ID       CREATED         SIZE
 alpine           latest    c1aabb73d233   12 days ago     7.33MB
@@ -73,21 +80,25 @@ REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
 alpine       latest    c1aabb73d233   12 days ago   7.33MB
 ubuntu       latest    99284ca6cea0   3 weeks ago   77.8MB
 root@ubuntu-22-04:~#
-`````
+```
+```bash
 docker run -<option> <image>:<tag>
 docker ru -d -it ubuntu:latest
 docker ps
 docker exec -it <docker id> <shell>
 ```
-output
+### output
+```bash
 
 root@ubuntu-22-04:~# docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 root@ubuntu-22-04:~#
 ```
+```bash
 docker run -it alpine
 ```
-output
+### output
+```bash
 root@ubuntu-22-04:~# docker run -it alpine
 / # cat /etc/*-release
 3.18.2
@@ -99,10 +110,12 @@ HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 / #
 ```
+```bash
 docker run -d -it alpine
 ```
 
-output
+### output
+```bash
 root@ubuntu-22-04:~# docker run -d -it alpine
 8ff105a742e1fb954898a5c73c7031e87907fc368d8baff37a220c990f7214c0
 root@ubuntu-22-04:~# docker ps
@@ -110,9 +123,11 @@ CONTAINER ID   IMAGE     COMMAND     CREATED         STATUS        PORTS     NAM
 8ff105a742e1   alpine    "/bin/sh"   3 seconds ago   Up 1 second             recursing_hermann
 root@ubuntu-22-04:~#
 ```
+```bash
 docker exec -it 8ff sh
 ```
-output
+### output
+```bash
 root@ubuntu-22-04:~# docker ps
 CONTAINER ID   IMAGE     COMMAND     CREATED         STATUS         PORTS     NAMES
 8ff105a742e1   alpine    "/bin/sh"   3 minutes ago   Up 3 minutes             recursing_hermann
@@ -147,9 +162,11 @@ PID   USER     TIME  COMMAND
    18 root      0:00 sh
    24 root      0:00 ps
 ```
+```bash
 docker stop 8ff
 ```
-output
+### output
+```bash
 root@ubuntu-22-04:~# docker ps
 CONTAINER ID   IMAGE     COMMAND     CREATED         STATUS         PORTS     NAMES
 8ff105a742e1   alpine    "/bin/sh"   9 minutes ago   Up 9 minutes             recursing_hermann
@@ -164,9 +181,11 @@ CONTAINER ID   IMAGE     COMMAND     CREATED          STATUS                    
 8ff105a742e1   alpine    "/bin/sh"   14 minutes ago   Exited (137) 4 minutes ago             recursing_hermann
 edda8974739d   alpine    "/bin/sh"   18 minutes ago   Exited (0) 17 minutes ago              inspiring_euler
 ```
+```bash
 docker run --name alpine -it alpine
 ```
-output
+###output
+```bash
 root@ubuntu-22-04:~#
 root@ubuntu-22-04:~# docker run --name alpine -it alpine
 / # cd /tmp/
@@ -175,8 +194,10 @@ root@ubuntu-22-04:~# docker run --name alpine -it alpine
 /tmp # cat ayk.txt
 hello docker
 /tmp # exit
+```
 
-output
+### output
+```bash
 root@ubuntu-22-04:~# docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 root@ubuntu-22-04:~# docker exec -d -it 16bca159c4a2 sh
@@ -196,9 +217,11 @@ ayk.txt
 hello docker
 /tmp #
 ```
+```bash
  docker rm alpine
 ```
-output
+### output
+```bash
 root@ubuntu-22-04:~# docker ps
 CONTAINER ID   IMAGE     COMMAND     CREATED         STATUS         PORTS     NA                                                                                                             MES
 16bca159c4a2   alpine    "/bin/sh"   7 minutes ago   Up 2 minutes             al                                                                                                             pine
@@ -217,9 +240,12 @@ CONTAINER ID   IMAGE     COMMAND     CREATED          STATUS                    
 edda8974739d   alpine    "/bin/sh"   28 minutes ago   Exited (0) 27 minutes ago                                                                                                                            inspiring_euler
 root@ubuntu-22-04:~#
 ```
+```bash
 docker run alpine /etc/os-release
 ```
-output
+### output
+```bash
+
 root@ubuntu-22-04:~# docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 root@ubuntu-22-04:~# docker run alpine whoami
@@ -235,10 +261,12 @@ HOME_URL="https://alpinelinux.org/"
 BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
 root@ubuntu-22-04:~#
 ```
+```bash
 docker run -dit alpine
 docker stats ff8
 ```
-output
+### output
+```bash
 root@ubuntu-22-04:~# docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 root@ubuntu-22-04:~# docker run -dit alpine
@@ -252,10 +280,12 @@ ff8667182632   beautiful_pike   0.00%     364KiB / 1.93GiB    0.02%     1.02kB /
 CONTAINER ID   NAME             CPU %     MEM USAGE / LIMIT   MEM %     NET I/O                                                                                                                    BLOCK I/O   PIDS
 ff8667182632   beau
 ```
+```bash
 docker stats --all --format "table {{.Container}}\t{{.CPUPerc}}\t {{.MemUsage}}" ff8
 ```
 
-output
+### output
+```bash
 root@ubuntu-22-04:~# docker stats --all --format "table {{.Container}}\t{{.CPUPerc}}\t {{.MemUsage}}" ff8
 CONTAINER   CPU %      MEM USAGE / LIMIT
 ff8         0.00%      364KiB / 1.93GiB
@@ -265,12 +295,14 @@ CONTAINER   CPU %      MEM USAGE / LIMIT
 ff8         0.00%      364KiB / 1.93GiB
 CONTAINER
 ```
+```bash
 docker container stop ff8
 docker container rm ff8
 ```
 
 
-output
+### output
+```bash
 root@ubuntu-22-04:~# docker ps
 CONTAINER ID   IMAGE     COMMAND     CREATED       STATUS       PORTS     NAMES
 ff8667182632   alpine    "/bin/sh"   3 hours ago   Up 3 hours             beauti                                                                                                             ful_pike
@@ -296,9 +328,10 @@ af5b53d4c6d8   alpine    "/etc/os-release"       3 hours ago   Created          
 8ff105a742e1   alpine    "/bin/sh"               3 hours ago   Exited (137) 3 hours ago             recursing_hermann
 edda8974739d   alpine    "/bin/sh"               3 hours ago   Exited (0) 3 hours ago               inspiring_euler
 root@ubuntu-22-04:~#
+```
 
-output
-
+#### output
+```bash
 ubuntu       latest    99284ca6cea0   3 weeks ago   77.8MB
 root@ubuntu-22-04:~# docker run -it --name=web -p 80:80 ubuntu:20.04
 `
@@ -317,7 +350,8 @@ root@ubuntu-22-04:~#
  docker build -t apache2 .
 docker run -d --name aykweb1 -p 80:60 apache2
 ```
-output
+### output
+```bash
 https://github.com/konova-mm/static_page
 root@ubuntu-22-04:~/static_page# cat Dockerfile
 FROM ubuntu:18.04
